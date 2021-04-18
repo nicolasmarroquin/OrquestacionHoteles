@@ -1,36 +1,50 @@
 package com.despegar.hoteles.models.entity;
 
+import java.util.List;
+
 public class Hotel {
 	
-	private String Id_hotel;
+	private Generales generales;
 	
-	private String nombre;
+	private List<TipoHabitacion> tipoHabitaciones;
 	
-	private String descripcion;
+	private List<Servicio> servicios;
+	
+	private List<Imagen> imagenes;
 
-	public String getId_hotel() {
-		return Id_hotel;
+	public Generales getGenerales() {
+		return generales;
 	}
 
-	public void setId_hotel(String id_hotel) {
-		Id_hotel = id_hotel;
+	public void setGenerales(Generales generales) {
+		this.generales = generales;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public List<TipoHabitacion> getTipoHabitaciones() {
+		return tipoHabitaciones;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setTipoHabitaciones(List<TipoHabitacion> tipoHabitaciones) {
+		this.tipoHabitaciones = tipoHabitaciones;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	public List<Servicio> getServicios() {
+		return servicios;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setServicios(List<Servicio> servicios) {
+		this.servicios = servicios;
 	}
+
+	public List<Imagen> getImagenes() {
+		return imagenes;
+	}
+
+	public void setImagenes(List<Imagen> imagenes) {
+		this.imagenes = imagenes;
+	}
+
+	
 	
 	
 	
