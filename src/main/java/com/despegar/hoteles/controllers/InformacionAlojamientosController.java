@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -89,6 +90,37 @@ public class InformacionAlojamientosController {
 		}
 		
 		return alojamientos;
+		
+	}
+	
+	@GetMapping({"/alojamiento/{idHotel}/{idAlojamiento}"})
+	public Alojamiento obtenerInformacionAlojamientos(@PathVariable("idHotel") String idHotel,@PathVariable("idAlojamiento") String idAlojamiento) {
+		String token;
+		AuthTokenController auth = new AuthTokenController();
+		token = auth.obtenerToken();
+		
+		if(idHotel.equals("90064825-H")) {
+			WebClient webClient1 = WebClient.builder().baseUrl("https://hotel-1-api.azurewebsites.net/api").build();
+			List<Alojamiento> alojamientos = webClient1.get()
+					.uri(uriBuilder -> uriBuilder
+					.path("/alojamientos/detalle")
+					.queryParam("idTipoAlojamiento", idAlojamiento)
+					.build())
+					.header("Authorization", "Bearer "+token)
+					.retrieve()
+					.bodyToFlux(Alojamiento.class)
+					.collectList().block();
+			
+			if(alojamientos.size()==0) {
+				return null;
+			}else
+
+			return alojamientos.get(0);
+			
+		}else {
+			return null;
+		}
+		
 		
 	}
 
